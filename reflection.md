@@ -23,6 +23,11 @@ When I first opened the game I saw a page with the title Game Glitch Investigato
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
 
+I used GitHub Copilot as my primary AI tool for this project
+
+One correct AI suggestion was when Copilot helped identify and fix the reversed hints bug in the "check_guess" function and suggested swapping the hint messages so that "Too High" returns "Go LOWER!" and "Too Low" returns "Go HIGHER!" (since it was reversed before). I verified the result by running the Streamlit app, and guessing numbers below and above the secret to confirm that the hints properly reflected the secret and guided the player towards the correct answer. For example, guessing 10 when the secret is 15 showed "Go HIGHER!", and guessing 20 showed "Go LOWER!"
+
+One incorrect or misleading AI suggestion occurred when Copilot initially proposed tests that didn't match the function's return type. So the AI suggested tests like assert result == "Win" for the "check_guess" function, but the function actually returns (outcome, message), not just a string. This led to test failures that didn't reflect the actual code behavior. I verified this by running the existing tests, which failed with assertion errors, and then corrected the tests check both outcome and message.
 ---
 
 ## 3. Debugging and testing your fixes
@@ -31,6 +36,12 @@ When I first opened the game I saw a page with the title Game Glitch Investigato
 - Describe at least one test you ran (manual or using pytest)  
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
+
+I did both manual playtesting and automated testing to figure out if it was fixed. For the hint reversal, I ran the Streamlit app, guessed numbers above and below a given secret from the Developer Debug Info section, and confirmed that the hint text now correctly guides me toward the secret.
+
+One pytest test I ran was test_hint_when_guess_lower_than_secret_str, which asserts that when the secret is passed as a string (an edge case caused by the app’s logic) and the guess is lower, the function returns "Too Low" and the message includes "Go HIGHER!". The test passed after the fix, confirming the hint logic works correctly even when the secret is a string.
+
+AI helped me design the tests by suggesting the exact edge case to cover (secret stored as a string on even attempts) and how to assert both the outcome and the hint message, which made the test more precise and reliable.
 
 ---
 

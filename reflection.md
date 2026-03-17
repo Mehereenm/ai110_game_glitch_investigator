@@ -8,6 +8,13 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - List at least two concrete bugs you noticed at the start  
   (for example: "the secret number kept changing" or "the hints were backwards").
 
+When I first opened the game I saw a page with the title Game Glitch Investigator, which prompted me to "Guess a number between 1 and 100" and displays that there are 8 attempts left. There is a place the Enter my guess and them three options below that: submit guess, new game, and hint. when submitting a guess, if hint is enabled it shows either "Go HIGHER!" or "Go LOWER!" at the bottom and if the guess is correct ballons pop up and a green bar at the bottom states "You already won. Start a new game to play again." 
+
+  Bugs:
+  1) The hints seem to be reversed? for example if the secret is 15 and the user inputs 10 it says "Go LOWER!". And if the input is a higher number such as 20 it says "Go HIGHER!" -> Hints do not work properly. Expectation: the appropriate hint is given t guide the user to the right answer
+  2) New game does not reset the score! Expectation: score resets for each new game
+  3) New game also does not reset the history, it continues to add on to the history from the last game(s). Expectation: History is reset after every game to only hold the values of the current game
+
 ---
 
 ## 2. How did you use AI as a teammate?
